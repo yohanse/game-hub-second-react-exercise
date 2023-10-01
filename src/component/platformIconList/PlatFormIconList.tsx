@@ -32,9 +32,6 @@ const PlatFormIconList = ({ platforms }: Props) => {
     web: BsGlobe,
     android: FaAndroid,
   };
-  for(var i = 0; i < platforms.length; i++){
-    console.log(platforms[i].slug);
-  }
   return (
     <HStack marginY={1}>
         

@@ -8,10 +8,11 @@ interface Props {
   genres: Genres | null;
   platform: PlatForm | null;
   order: string;
+  search: string;
 }
 
-const GridGame = ({ genres, platform, order }: Props) => {
-  const { data, error, isLoading } = useGame(genres, platform, order);
+const GridGame = ({ genres, platform, order, search}: Props) => {
+  const { data, error, isLoading } = useGame(genres, platform, order, search);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
     <>
@@ -23,9 +24,11 @@ const GridGame = ({ genres, platform, order }: Props) => {
       >
         {isLoading &&
           skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
-        {data.map((game) => (
-          <GameCard game={game} key={game.id}></GameCard>
-        ))}
+        {
+          data !== null? data.map((game) => (
+            <GameCard game={game} key={game.id}></GameCard>
+          )): <>no result</>
+        }
       </SimpleGrid>
     </>
   );

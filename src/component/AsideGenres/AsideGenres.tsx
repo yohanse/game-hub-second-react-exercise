@@ -1,5 +1,5 @@
 import useGenres, { Genres } from "../../hooks/useGenres";
-import { HStack, Image, List, ListItem, Spinner, Button } from "@chakra-ui/react";
+import { HStack, Image, List, ListItem, Spinner, Button, Heading } from "@chakra-ui/react";
 import getCroppedImage from "../../service/image-url";
 
 
@@ -13,6 +13,7 @@ const AsideGenres = ({ onSelectedGenres, selectedGenres }: Props) => {
   if(isLoading) return <Spinner/>;
   return (
     <>
+    <Heading fontSize={"2xl"} marginBottom={3}>Genres</Heading>
       <List>
         {data.map((genres) => (
           <ListItem key={genres.id}>
@@ -22,9 +23,10 @@ const AsideGenres = ({ onSelectedGenres, selectedGenres }: Props) => {
                 src={getCroppedImage(genres.image_background)}
                 width="30px"
                 height="30px"
+                objectFit="cover"
                 borderRadius="4px"
               />{" "}
-              <Button onClick={() => onSelectedGenres(genres)} fontSize="large" variant="link" fontWeight={genres.id == selectedGenres?.id? "bold": "normal"}>{genres.name}</Button>
+              <Button whiteSpace="normal" textAlign="left" onClick={() => onSelectedGenres(genres)} fontSize="large" variant="link" fontWeight={genres.id == selectedGenres?.id? "bold": "normal"}>{genres.name}</Button>
             </HStack>
           </ListItem>
         ))}
